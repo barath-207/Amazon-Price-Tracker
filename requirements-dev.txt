@@ -1,0 +1,8 @@
+# Development / optional dependencies
+-r requirements.txt
+pytest>=7.0,<9
+matplotlib>=3.7,<4
+
+# Playwright is OPTIONAL - only needed for dynamically rendered content.
+# Install separately with: pip install playwright && playwright install chromium
+# playwright>=1.40

@@ -1,0 +1,74 @@
+# ===========================================================================
+# Central tracker settings.
+#
+# This file is safe to commit. All secrets (ntfy token, Amazon API keys, etc.)
+# live ONLY in GitHub Actions repository secrets or a local .env file.
+# ===========================================================================
+
+tracker:
+  # Human label, also used in some notification titles.
+  name: "Amazon Price Tracker"
+
+  # Random delay (seconds) between consecutive product checks to be polite.
+  request_delay_min: 3
+  request_delay_max: 8
+
+  # HTTP request timeout per attempt (seconds).
+  request_timeout: 20
+
+  # Max HTTP retries per product with exponential backoff.
+  max_retries: 3
+
+  # Backoff base in seconds (2 -> 2s, 4s, 8s ...).
+  backoff_base: 2
+
+  # When true, a timestamped observation row is written on EVERY successful
+  # check, even when nothing changed. Set false to store rows only on change
+  # (saves space, but loses "heartbeat" observations).
+  store_every_check: true
+
+# Behaviour switches for each notification family.
+notifications:
+  price_changes: true
+  offer_changes: true
+  coupon_changes: true
+  availability_changes: true
+  seller_changes: true
+  target_price: true
+  new_tracked_low: true
+  new_tracked_high: true
+  # Send a notification when a check fails entirely (blocked / CAPTCHA).
+  # Off by default to avoid noise when Amazon rate-limits.
+  on_check_failure: false
+
+# Low / Normal / High classification settings.
+history:
+  classification_enabled: true
+  # Minimum number of stored observations before we classify a price as
+  # LOW / HIGH. Below this we report "Insufficient historical data".
+  minimum_observations: 10
+  # Range-method thresholds (fraction of observed range [low..high]).
+  range_thresholds:
+    very_low: 0.10   # 0 - 10%   -> VERY LOW
+    low: 0.30        # 10 - 30%  -> LOW
+    high: 0.70       # 30 - 70%  -> NORMAL, 70 - 90% -> HIGH
+    very_high: 0.90  # 90 - 100% -> VERY HIGH
+
+# Default ntfy priority per event type (one of: default, low, high, urgent).
+# These are fallbacks; per-product overrides take precedence.
+ntfy_priorities:
+  PRICE_DROP: high
+  PRICE_INCREASE: default
+  BANK_OFFER_ADDED: high
+  BANK_OFFER_REMOVED: default
+  BANK_OFFER_CHANGED: default
+  COUPON_ADDED: default
+  COUPON_REMOVED: low
+  COUPON_CHANGED: low
+  BACK_IN_STOCK: high
+  OUT_OF_STOCK: urgent
+  TARGET_PRICE_REACHED: urgent
+  SELLER_CHANGED: low
+  NEW_TRACKED_LOW: high
+  NEW_TRACKED_HIGH: default
+  CHECK_FAILED: low

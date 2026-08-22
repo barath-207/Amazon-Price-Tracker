@@ -1,0 +1,54 @@
+# ===========================================================================
+# Products to track.
+#
+# To add a product, copy one block below and change the `url` (and optionally
+# the `id`, `name`, etc.). Any Amazon URL format is accepted - the ASIN is
+# extracted and used as the canonical identifier so duplicates are prevented.
+#
+# All fields except `url` are optional. Sensible defaults apply.
+# ===========================================================================
+
+products:
+  # Minimal entry - just a URL. An `id` is auto-generated from the ASIN.
+  # Typical entry with a friendly id and name.
+  - id: HUION-HS64
+    name: "HUION-HS64"
+    url: "https://amzn.in/d/0fq0Sc55"
+    enabled: true
+
+  - id: WACOM-CTL-472
+    name: "WACOM-CTL-472"
+    url: "https://amzn.in/d/0aEHmXGy"
+    enabled: true
+
+  - id: XPPEN-DECO-640
+    name: "XPPEN-DECO-640"
+    url: "https://amzn.in/d/0bB8qm3H"
+    enabled: true
+
+  - id: XPPEN-STAR-G640
+    name: "XPPEN-STAR-G640"
+    url: "https://amzn.in/d/0edDMZLA"
+    enabled: true
+
+  - id: HUION-INSPIROY=H640P
+    name: "HUION-INSPIROY=H640P"
+    url: "https://amzn.in/d/06Wr7lPo"
+    enabled: true
+
+  - id: XPPEN-STAR-03V2
+    name: "XPPEN-STAR-03V2"
+    url: "https://amzn.in/d/09PPm5u9"
+    enabled: true
+
+  # Entry with optional pricing/notification settings.
+  # - id: example-headphones
+  #   name: "Example Headphones"
+  #   url: "https://www.amazon.in/gp/product/B0abcdefg"
+  #   enabled: true
+  #   target_price: 7000            # alert when price <= this
+  #   notify_on_any_price_change: true
+  #   notify_on_offer_change: true
+  #   notify_on_coupon_change: true
+  #   min_drop_percent: 0           # only notify on drops >= this %
+# Add new products above this line.
