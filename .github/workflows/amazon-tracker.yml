@@ -20,8 +20,6 @@
 
 name: Amazon Price Tracker
 
-name: Amazon Price Tracker
-
 on:
   schedule:
     # 9:00 AM, 3:00 PM and 9:00 PM IST
