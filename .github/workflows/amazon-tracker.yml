@@ -2,7 +2,6 @@
 # Amazon Price Tracker - GitHub Actions workflow
 #
 # This runs the tracker on a schedule AND on demand. No local machine needed.
-#
 # ───────────────────────────────────────────────────────────────────────────
 # HOW TO CHANGE THE CHECK INTERVAL
 # ───────────────────────────────────────────────────────────────────────────
