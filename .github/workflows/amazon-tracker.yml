@@ -2,27 +2,33 @@
 # Amazon Price Tracker - GitHub Actions workflow
 #
 # This runs the tracker on a schedule AND on demand. No local machine needed.
-# ───────────────────────────────────────────────────────────────────────────
-# HOW TO CHANGE THE CHECK INTERVAL
-# ───────────────────────────────────────────────────────────────────────────
-# Edit the `cron:` line under `schedule:` below. GitHub only runs scheduled
-# workflows from the repository's DEFAULT branch.
 #
-# Common intervals (pick ONE, comment out the others):
+# ───────────────────────────────────────────────────────────────────────────
+# IMPORTANT: GitHub Actions runners use datacenter (Azure) IP ranges. Amazon
+# CAPTCHAs raw HTTP requests from these IPs ~100% of the time. So this workflow
+# installs Playwright (headless Chromium) and uses FETCH_STRATEGY=playwright,
+# which bypasses most bot checks. See README "Known limitations".
+# ───────────────────────────────────────────────────────────────────────────
+#
+# HOW TO CHANGE THE CHECK INTERVAL
+# Edit the `cron:` line under `schedule:` below. Scheduled workflows only run
+# from the repository's DEFAULT branch.
 #   Every 30 min : cron: "*/30 * * * *"
 #   Every hour   : cron: "0 * * * *"
 #   Every 2 hours: cron: "0 */2 * * *"
 #   Daily 9:30am : cron: "30 4 * * *"   (UTC; 09:30 IST = 04:00 UTC)
 #
 # NOTE: GitHub may delay scheduled runs by up to ~15 min during busy periods.
+# NOTE: Playwright adds ~15-25s per product; keep intervals reasonable.
 # ===========================================================================
 
 name: Amazon Price Tracker
 
 on:
   schedule:
-    # 9:00 AM, 3:00 PM and 9:00 PM IST
-    - cron: "30 3,9,15 * * *"
+    # ┌───────────── CHANGE ME: run every 2 hours ─────────────┐
+    - cron: "0 */2 * * *"
+    # └─────────────────────────────────────────────────────────┘
 
   # Manual run from the Actions tab ("Run workflow" button).
   workflow_dispatch:
@@ -36,6 +42,12 @@ on:
         type: boolean
         required: false
         default: false
+      strategy:
+        description: "Fetch strategy"
+        type: choice
+        options: ["playwright", "auto", "requests"]
+        required: false
+        default: "playwright"
 
 # Prevent two runs from modifying the SQLite database simultaneously.
 concurrency:
@@ -48,13 +60,17 @@ permissions:
 jobs:
   track:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     env:
       PYTHONPATH: ${{ github.workspace }}/src
       NTFY_SERVER: ${{ secrets.NTFY_SERVER }}
       NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
       NTFY_TOKEN: ${{ secrets.NTFY_TOKEN }}
+      # Use a real headless browser to get past Amazon's datacenter-IP CAPTCHA.
+      FETCH_STRATEGY: ${{ github.event.inputs.strategy || 'playwright' }}
+      # Optional: route requests through a residential proxy if you have one.
+      AMAZON_PROXY: ${{ secrets.AMAZON_PROXY }}
 
     steps:
       - name: 📥 Checkout repository
@@ -70,9 +86,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install playwright
+
+      - name: 🌐 Install Chromium for Playwright
+        run: |
+          python -m playwright install --with-deps chromium
 
       - name: 🔍 Run tracker check
-        id: check
         run: |
           ARGS=""
           if [ -n "${{ github.event.inputs.product }}" ]; then
@@ -81,6 +101,7 @@ jobs:
           if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
             ARGS="$ARGS -v"
           fi
+          echo "Using FETCH_STRATEGY=$FETCH_STRATEGY"
           # Always exit 0 even if some products fail, so history still commits.
           python -m tracker check $ARGS || true
 
