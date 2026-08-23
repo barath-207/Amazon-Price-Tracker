@@ -86,7 +86,10 @@ class Tracker:
             timeout=self.settings.request_timeout,
             max_retries=self.settings.max_retries,
             backoff_base=self.settings.backoff_base,
-            use_playwright=self.settings.use_playwright,
+            fetch_strategy=self.settings.fetch_strategy,
+            use_mobile_fallback=self.settings.use_mobile_fallback,
+            warm_session=self.settings.warm_session,
+            proxy=self.settings.amazon_proxy,
         )
         self.sender = sender or NtfySender(self.settings)
         self.products = products if products is not None else load_products(config_dir, self.settings.domain)
@@ -99,24 +102,28 @@ class Tracker:
             products = [p for p in products if p.id == only_product]
         log.info("Checking %d product(s)", len(products))
 
-        for i, product in enumerate(products):
-            if i > 0:
-                delay = random.uniform(self.settings.request_delay_min, self.settings.request_delay_max)
-                log.debug("sleeping %.1fs before next product", delay)
-                time.sleep(delay)
-            try:
-                result = self.check_one(product)
-            except Exception as exc:  # never abort the whole run
-                log.exception("unexpected error checking %s: %s", product.id, exc)
-                result = ProductResult(product=product, success=False, error=f"unexpected: {exc}")
-            summary.results.append(result)
-            summary.checked += 1
-            if result.success:
-                summary.successful += 1
-            else:
-                summary.failed += 1
-            for ev in result.events:
-                self._bump_summary(summary, ev.change_type)
+        try:
+            for i, product in enumerate(products):
+                if i > 0:
+                    delay = random.uniform(self.settings.request_delay_min, self.settings.request_delay_max)
+                    log.debug("sleeping %.1fs before next product", delay)
+                    time.sleep(delay)
+                try:
+                    result = self.check_one(product)
+                except Exception as exc:  # never abort the whole run
+                    log.exception("unexpected error checking %s: %s", product.id, exc)
+                    result = ProductResult(product=product, success=False, error=f"unexpected: {exc}")
+                summary.results.append(result)
+                summary.checked += 1
+                if result.success:
+                    summary.successful += 1
+                else:
+                    summary.failed += 1
+                for ev in result.events:
+                    self._bump_summary(summary, ev.change_type)
+        finally:
+            # Release the cached Playwright browser (if any) at the end of a run.
+            self.scraper.close()
 
         return summary
 
