@@ -27,7 +27,7 @@ name: Amazon Price Tracker
 on:
   schedule:
     # ┌───────────── CHANGE ME: run every 2 hours ─────────────┐
-    - cron: "0 */2 * * *"
+    - cron: "0 */4 * * *"
     # └─────────────────────────────────────────────────────────┘
 
   # Manual run from the Actions tab ("Run workflow" button).
