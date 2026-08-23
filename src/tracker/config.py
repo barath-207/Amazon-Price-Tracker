@@ -63,7 +63,12 @@ class Settings:
     ntfy: NtfyConfig = field(default_factory=NtfyConfig)
     ntfy_priorities: dict[str, str] = field(default_factory=dict)
     domain: str = "www.amazon.in"
-    use_playwright: bool = False
+    # Scraping strategy: "requests" | "playwright" | "auto"
+    fetch_strategy: str = "auto"
+    use_mobile_fallback: bool = True
+    warm_session: bool = True
+    use_playwright: bool = False  # legacy alias; True => fetch_strategy "playwright"
+    amazon_proxy: Optional[str] = None
     config_dir: Path = field(default_factory=lambda: Path("config"))
 
     def priority_for(self, change_type: str) -> str:
@@ -109,6 +114,9 @@ def load_settings(config_dir: str | Path = "config") -> Settings:
     s.store_every_check = bool(tracker.get("store_every_check", s.store_every_check))
     s.domain = tracker.get("domain", s.domain)
     s.use_playwright = bool(tracker.get("use_playwright", s.use_playwright))
+    s.fetch_strategy = str(tracker.get("fetch_strategy", s.fetch_strategy)).lower()
+    s.use_mobile_fallback = bool(tracker.get("use_mobile_fallback", s.use_mobile_fallback))
+    s.warm_session = bool(tracker.get("warm_session", s.warm_session))
 
     notif = raw.get("notifications", {}) or {}
     s.notifications = NotificationToggles(
@@ -139,6 +147,20 @@ def load_settings(config_dir: str | Path = "config") -> Settings:
         token=env.get("NTFY_TOKEN"),
         priority=str(env.get("NTFY_PRIORITY", "default")),
     )
+
+    # --- Scraping overrides (env wins over YAML; easy to toggle in CI) ---
+    if env.get("FETCH_STRATEGY"):
+        s.fetch_strategy = str(env["FETCH_STRATEGY"]).lower()
+    elif env.get("USE_PLAYWRIGHT", "").lower() in ("1", "true", "yes"):
+        s.fetch_strategy = "playwright"
+    if s.fetch_strategy not in ("requests", "playwright", "auto"):
+        s.fetch_strategy = "auto"
+    if env.get("AMAZON_PROXY"):
+        s.amazon_proxy = env["AMAZON_PROXY"]
+    # In CI, raw requests are almost always CAPTCHA'd by Amazon, so when no
+    # explicit strategy is set in YAML or env, prefer Playwright.
+    if env.get("GITHUB_ACTIONS") and not env.get("FETCH_STRATEGY") and not tracker.get("fetch_strategy"):
+        s.fetch_strategy = "playwright"
 
     if not s.ntfy.configured:
         log.warning("ntfy not configured (NTFY_SERVER / NTFY_TOPIC missing) - notifications disabled")
