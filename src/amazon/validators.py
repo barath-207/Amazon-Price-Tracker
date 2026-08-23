@@ -83,6 +83,17 @@ def validate_observation(obs: ProductObservation, expected_asin: Optional[str] =
         )
         obs.price_confident = False
 
+    # Guard against duplicated/glued MRP values (e.g. 4499+4499 -> 44994499).
+    # A genuine MRP is rarely more than ~50x the selling price.
+    if (
+        is_plausible_price(sp)
+        and obs.price.mrp is not None
+        and obs.price.mrp > sp * 50
+    ):
+        if hasattr(obs, "notes"):
+            obs.notes.append(f"dropping implausible MRP {obs.price.mrp} (vs price {sp})")
+        obs.price.mrp = None
+
     ok = len(reasons) == 0
     if ok:
         obs.price_confident = True
