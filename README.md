@@ -307,19 +307,59 @@ No other code changes are required.
 
 ## ⚠️ Known Amazon Scraping Limitations
 
-Amazon actively blocks automated access. Be realistic:
+Amazon actively blocks automated access. **The single biggest issue on GitHub
+Actions is that runners use datacenter (Azure) IP ranges, and Amazon serves a
+CAPTCHA/"bot check" page to raw HTTP requests from those IPs essentially 100%
+of the time.** This shows up as `scrape failed - CAPTCHA/bot-detection page`
+for every product.
 
-- **CAPTCHA / bot detection** is common, especially from GitHub Actions' datacenter IPs and AWS ranges. The tracker detects these pages and **never** records a bogus price — it logs the failure and moves on.
-- **Bank offers / coupons** may be personalized, A/B-tested, or loaded dynamically via JS. The extractor reports a *confidence* flag and refuses to claim an offer disappeared unless it's sure.
-- **Variants**: the tracker records the selected variant Amazon exposes, so two variants are never merged into one history.
-- HTML structure changes frequently. The parser is layered (primary selectors → fallbacks → JSON-LD → embedded data) so a single broken selector doesn't break extraction.
+### The fix: Playwright (already wired up)
 
-### Troubleshooting CAPTCHA / blocking
+This project ships with a **Playwright (headless Chromium) fetch strategy** that
+emulates a real browser. Because a real browser has a genuine fingerprint and
+executes JavaScript, it bypasses most of Amazon's data checks that block
+`requests`. The GitHub Actions workflow installs Chromium and sets
+`FETCH_STRATEGY=playwright` by default, so once you push the updated workflow
+your checks should succeed.
 
-1. **Slow down** — raise `request_delay_min`/`request_delay_max` in `config/settings.yaml` and reduce the cron frequency.
-2. **Enable Playwright** (renders JS, often avoids plain-HTML bot checks): set `tracker.use_playwright: true` in `config/settings.yaml`, then add a Playwright install step to the workflow (see commented section). This makes runs slower.
-3. **Rotate user agents** — already done; you can extend the list in `src/amazon/scraper.py`.
-4. If blocking is persistent, consider the **official Amazon Product Advertising API** — the scraping layer is isolated precisely so you can drop in an API client without rewriting anything else.
+If you need a real browser locally too:
+
+```bash
+pip install playwright
+python -m playwright install chromium      # add --with-deps on Linux
+FETCH_STRATEGY=playwright python -m tracker check
+```
+
+Strategies (set via `tracker.fetch_strategy` in `config/settings.yaml` or the
+`FETCH_STRATEGY` env var):
+
+| Strategy | What it does | When to use |
+| --- | --- | --- |
+| `requests` | HTTP only (fast) | Local machine with a residential IP |
+| `playwright` | Chromium first, HTTP fallback | **GitHub Actions / any datacenter IP** |
+| `auto` | HTTP first, Chromium on CAPTCHA | Mixed |
+
+### Other mitigations
+
+- **Slow down** — raise `request_delay_min`/`request_delay_max` and reduce cron frequency.
+- **Add a residential proxy** — set an `AMAZON_PROXY` GitHub secret
+  (e.g. `http://user:pass@host:port`) and it is used for both HTTP and Playwright.
+  This is the most reliable fix for datacenter IPs.
+- **Partial success is fine** — a price tracker runs every couple of hours; even
+  if some checks are blocked, the ones that succeed build up a useful history.
+
+### Important caveats
+
+- **Bank offers / coupons** may be personalized, A/B-tested, or loaded via JS.
+  The extractor reports a *confidence* flag and won't claim an offer vanished
+  unless it's sure.
+- **Variants**: the tracker records the selected variant Amazon exposes, so two
+  variants are never merged into one history.
+- HTML changes frequently. The parser is layered (primary selectors → fallbacks
+  → JSON-LD → embedded data) so a single broken selector doesn't break extraction.
+- If blocking is persistent even with Playwright, consider the **official Amazon
+  Product Advertising API** — the scraping layer is isolated precisely so an API
+  client can replace it without rewriting anything else.
 
 ---
 
