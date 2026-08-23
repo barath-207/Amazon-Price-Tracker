@@ -27,6 +27,16 @@ tracker:
   # (saves space, but loses "heartbeat" observations).
   store_every_check: true
 
+  # ──────────── Scraping strategy (see README "Known limitations") ────────────
+  # Amazon CAPTCHAs raw requests from datacenter IPs (GitHub Actions!).
+  #   requests  : HTTP only (fast, almost always blocked on CI).
+  #   playwright: headless Chromium first, HTTP fallback (recommended for CI).
+  #   auto      : HTTP first, Playwright on CAPTCHA.
+  # The GITHUB_ACTIONS env + FETCH_STRATEGY env override this in CI.
+  fetch_strategy: auto
+  use_mobile_fallback: true
+  warm_session: true
+
 # Behaviour switches for each notification family.
 notifications:
   price_changes: true
