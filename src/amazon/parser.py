@@ -308,18 +308,27 @@ def extract_selling_price(soup: BeautifulSoup) -> tuple[Optional[float], Optiona
 
 
 def extract_mrp(soup: BeautifulSoup) -> Optional[float]:
-    text = _first_text(
-        soup,
-        [
-            ".a-text-price[data-a-strike]",
-            ".a-text-price span.a-offscreen",
-            ".priceBlockStrikePriceString",
-            "#listPrice",
-            ".a-color-secondary .a-text-strike",
-            "span.basisPrice .a-offscreen",
-        ],
-    )
-    return parse_price_text(text)
+    # Prefer the leaf .a-offscreen span; the parent .a-text-price often
+    # duplicates the price across two child spans, which get_text() glues
+    # together into a bogus number (e.g. 4,499+4,499 -> 44994499).
+    selectors = [
+        ".a-text-price[data-a-strike] .a-offscreen",
+        "span.basisPrice .a-offscreen",
+        ".priceBlockStrikePriceString",
+        "#listPrice",
+        ".a-color-secondary .a-text-strike",
+        ".a-text-price[data-a-strike]",
+        ".a-text-price span.a-offscreen",
+    ]
+    for sel in selectors:
+        node = soup.select_one(sel)
+        if node:
+            # Space separator so any duplicated spans don't concatenate.
+            text = node.get_text(" ", strip=True)
+            price = parse_price_text(text)
+            if price:
+                return price
+    return None
 
 
 def extract_deal_price(soup: BeautifulSoup) -> Optional[float]:
