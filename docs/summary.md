@@ -6,7 +6,7 @@
 | --- | ---: |
 | 📉 Price Drops | 0 |
 | 📈 Price Increases | 0 |
-| 🏦 Offer Changes | 3 |
+| 🏦 Offer Changes | 1 |
 | 🎟️ Coupon Changes | 0 |
 | 🟢 Back in Stock | 0 |
 | 🔴 Out of Stock | 0 |
