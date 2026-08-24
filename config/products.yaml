@@ -26,21 +26,6 @@ products:
     url: "https://amzn.in/d/0bB8qm3H"
     enabled: true
 
-  - id: XPPEN-STAR-G640
-    name: "XPPEN-STAR-G640"
-    url: "https://amzn.in/d/0edDMZLA"
-    enabled: true
-
-  - id: HUION-INSPIROY=H640P
-    name: "HUION-INSPIROY=H640P"
-    url: "https://amzn.in/d/06Wr7lPo"
-    enabled: true
-
-  - id: XPPEN-STAR-03V2
-    name: "XPPEN-STAR-03V2"
-    url: "https://amzn.in/d/09PPm5u9"
-    enabled: true
-
   # Entry with optional pricing/notification settings.
   # - id: example-headphones
   #   name: "Example Headphones"
