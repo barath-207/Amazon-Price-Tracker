@@ -11,15 +11,6 @@
 products:
   # Minimal entry - just a URL. An `id` is auto-generated from the ASIN.
   # Typical entry with a friendly id and name.
-  - id: HUION-HS64
-    name: "HUION-HS64"
-    url: "https://amzn.in/d/0fq0Sc55"
-    enabled: true
-
-  - id: WACOM-CTL-472
-    name: "WACOM-CTL-472"
-    url: "https://amzn.in/d/0aEHmXGy"
-    enabled: true
 
   - id: XPPEN-DECO-640
     name: "XPPEN-DECO-640"
