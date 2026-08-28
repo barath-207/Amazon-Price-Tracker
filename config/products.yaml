@@ -12,9 +12,36 @@ products:
   # Minimal entry - just a URL. An `id` is auto-generated from the ASIN.
   # Typical entry with a friendly id and name.
 
+  # Minimal entry - just a URL. An `id` is auto-generated from the ASIN.
+  # Typical entry with a friendly id and name.
+  - id: HUION-HS64
+    name: "HUION-HS64"
+    url: "https://amzn.in/d/0fq0Sc55"
+    enabled: true
+
+  - id: WACOM-CTL-472
+    name: "WACOM-CTL-472"
+    url: "https://amzn.in/d/0aEHmXGy"
+    enabled: true
+
   - id: XPPEN-DECO-640
     name: "XPPEN-DECO-640"
     url: "https://amzn.in/d/0bB8qm3H"
+    enabled: true
+
+  - id: XPPEN-STAR-G640
+    name: "XPPEN-STAR-G640"
+    url: "https://amzn.in/d/0edDMZLA"
+    enabled: true
+
+  - id: HUION-INSPIROY=H640P
+    name: "HUION-INSPIROY=H640P"
+    url: "https://amzn.in/d/06Wr7lPo"
+    enabled: true
+
+  - id: XPPEN-STAR-03V2
+    name: "XPPEN-STAR-03V2"
+    url: "https://amzn.in/d/09PPm5u9"
     enabled: true
 
   # Entry with optional pricing/notification settings.
