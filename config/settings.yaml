@@ -40,8 +40,8 @@ tracker:
 # Behaviour switches for each notification family.
 notifications:
   price_changes: true
-  offer_changes: true
-  coupon_changes: true
+  offer_changes: false
+  coupon_changes: false
   availability_changes: true
   seller_changes: true
   target_price: true
@@ -69,9 +69,9 @@ history:
 ntfy_priorities:
   PRICE_DROP: high
   PRICE_INCREASE: default
-  BANK_OFFER_ADDED: high
-  BANK_OFFER_REMOVED: default
-  BANK_OFFER_CHANGED: default
+  BANK_OFFER_ADDED: low
+  BANK_OFFER_REMOVED: low
+  BANK_OFFER_CHANGED: low
   COUPON_ADDED: default
   COUPON_REMOVED: low
   COUPON_CHANGED: low
