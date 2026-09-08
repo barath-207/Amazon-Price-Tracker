@@ -4,7 +4,7 @@
 
 | Metric | Count |
 | --- | ---: |
-| 📉 Price Drops | 0 |
+| 📉 Price Drops | 1 |
 | 📈 Price Increases | 0 |
 | 🏦 Offer Changes | 0 |
 | 🎟️ Coupon Changes | 0 |
@@ -17,7 +17,7 @@
 | Product | Price | Status | OK? |
 | --- | ---: | --- | :---: |
 | HUION-HS64 | ₹2,170 | In stock | ✅ |
-| WACOM-CTL-472 | ₹3,199 | Only 1 left in stock. | ✅ |
+| WACOM-CTL-472 | ₹2,188 | In Stock | ✅ |
 | XPPEN-DECO-640 | ₹2,989 | In stock | ✅ |
 | XPPEN-STAR-G640 | ₹2,689 | In stock | ✅ |
 | HUION-INSPIROY=H640P | ₹2,446 | In stock | ✅ |
