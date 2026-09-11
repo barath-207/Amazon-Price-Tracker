@@ -17,7 +17,7 @@
 | Product | Price | Status | OK? |
 | --- | ---: | --- | :---: |
 | HUION-HS64 | ₹2,170 | In stock | ✅ |
-| WACOM-CTL-472 | ₹3,199 | FREE delivery3 - 5 October | ✅ |
+| WACOM-CTL-472 | ₹3,199 | FREE delivery4 - 5 October | ✅ |
 | XPPEN-DECO-640 | ₹2,989 | In stock | ✅ |
 | XPPEN-STAR-G640 | ₹2,689 | In stock | ✅ |
 | HUION-INSPIROY=H640P | ₹2,446 | In stock | ✅ |
