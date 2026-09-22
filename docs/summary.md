@@ -10,7 +10,7 @@
 | 🎟️ Coupon Changes | 0 |
 | 🟢 Back in Stock | 0 |
 | 🔴 Out of Stock | 0 |
-| ⚠️ Errors | 2 |
+| ⚠️ Errors | 1 |
 
 ### Products
 
@@ -20,5 +20,5 @@
 | WACOM-CTL-472 | — | — | ❌ |
 | XPPEN-DECO-640 | ₹2,989 | In stock | ✅ |
 | XPPEN-STAR-G640 | ₹2,689 | In stock | ✅ |
-| HUION-INSPIROY=H640P | — | — | ❌ |
+| HUION-INSPIROY=H640P | ₹2,446 | In stock | ✅ |
 | XPPEN-STAR-03V2 | ₹4,495 | In stock | ✅ |
