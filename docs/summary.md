@@ -10,13 +10,13 @@
 | 🎟️ Coupon Changes | 0 |
 | 🟢 Back in Stock | 0 |
 | 🔴 Out of Stock | 0 |
-| ⚠️ Errors | 1 |
+| ⚠️ Errors | 2 |
 
 ### Products
 
 | Product | Price | Status | OK? |
 | --- | ---: | --- | :---: |
-| HUION-HS64 | ₹2,170 | In stock | ✅ |
+| HUION-HS64 | — | — | ❌ |
 | WACOM-CTL-472 | — | — | ❌ |
 | XPPEN-DECO-640 | ₹2,989 | In stock | ✅ |
 | XPPEN-STAR-G640 | ₹2,689 | In stock | ✅ |
