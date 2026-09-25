@@ -43,6 +43,41 @@ products:
     name: "XPPEN-STAR-03V2"
     url: "https://amzn.in/d/09PPm5u9"
     enabled: true
+    
+  - id: HUION-HS610
+    name: "HUION-HS610"
+    url: "https://amzn.in/d/0gc4wV0u"
+    enabled: true
+
+  - id: HUION-HS611
+    name: "HUION-HS611"
+    url: "https://amzn.in/d/023eQGZK"
+    enabled: true
+
+  - id: XPPEN-DECO01-V3
+    name: "XPPEN-DECO01-V3"
+    url: "https://amzn.in/d/09nnb1d6"
+    enabled: true
+
+  - id: XPPEN-DECO-MINI7-V2
+    name: "XPPEN-DECO-MINI7-V2"
+    url: "https://amzn.in/d/0dy0GmCG"
+    enabled: true
+
+  - id: HUION-INSPIROY-H950P
+    name: "HUION-INSPIROY-H950P"
+    url: "https://amzn.in/d/00GcoaKN"
+    enabled: true
+
+  - id: HUION-INSPIROY2-MEDIUM
+    name: "HUION-INSPIROY2-MEDIUM"
+    url: "https://amzn.in/d/09edF5BP"
+    enabled: true
+
+  - id: HUION-INSPIROY-H1060P
+    name: "HUION-INSPIROY-H1060P"
+    url: "https://amzn.in/d/0eV2TyOc"
+    enabled: true
 
   # Entry with optional pricing/notification settings.
   # - id: example-headphones
