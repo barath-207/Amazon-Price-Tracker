@@ -1,6 +1,6 @@
 ## 🛒 Amazon Tracker
 
-**Checked:** 6 products
+**Checked:** 13 products
 
 | Metric | Count |
 | --- | ---: |
@@ -22,3 +22,10 @@
 | XPPEN-STAR-G640 | ₹2,689 | In stock | ✅ |
 | HUION-INSPIROY=H640P | ₹2,446 | In stock | ✅ |
 | XPPEN-STAR-03V2 | ₹4,495 | In stock | ✅ |
+| HUION-HS610 | ₹4,395 | In stock | ✅ |
+| HUION-HS611 | ₹5,099 | In stock | ✅ |
+| XPPEN-DECO01-V3 | ₹6,495 | In stock | ✅ |
+| XPPEN-DECO-MINI7-V2 | ₹3,695 | In stock | ✅ |
+| HUION-INSPIROY-H950P | ₹3,395 | In stock | ✅ |
+| HUION-INSPIROY2-MEDIUM | ₹5,899 | In stock | ✅ |
+| HUION-INSPIROY-H1060P | ₹3,632 | In stock | ✅ |
