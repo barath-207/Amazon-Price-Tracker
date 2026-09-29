@@ -4,7 +4,7 @@
 
 | Metric | Count |
 | --- | ---: |
-| 📉 Price Drops | 0 |
+| 📉 Price Drops | 1 |
 | 📈 Price Increases | 0 |
 | 🏦 Offer Changes | 0 |
 | 🎟️ Coupon Changes | 0 |
@@ -23,7 +23,7 @@
 | HUION-INSPIROY=H640P | ₹2,446 | In stock | ✅ |
 | XPPEN-STAR-03V2 | ₹4,495 | In stock | ✅ |
 | HUION-HS610 | ₹4,395 | In stock | ✅ |
-| HUION-HS611 | ₹5,499 | In stock | ✅ |
+| HUION-HS611 | ₹5,099 | In stock | ✅ |
 | XPPEN-DECO01-V3 | ₹6,495 | In stock | ✅ |
 | XPPEN-DECO-MINI7-V2 | ₹3,695 | In stock | ✅ |
 | HUION-INSPIROY-H950P | ₹3,395 | In stock | ✅ |
