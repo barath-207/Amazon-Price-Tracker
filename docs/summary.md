@@ -5,7 +5,7 @@
 | Metric | Count |
 | --- | ---: |
 | 📉 Price Drops | 0 |
-| 📈 Price Increases | 1 |
+| 📈 Price Increases | 0 |
 | 🏦 Offer Changes | 0 |
 | 🎟️ Coupon Changes | 0 |
 | 🟢 Back in Stock | 0 |
