@@ -5,7 +5,7 @@
 | Metric | Count |
 | --- | ---: |
 | 📉 Price Drops | 0 |
-| 📈 Price Increases | 1 |
+| 📈 Price Increases | 7 |
 | 🏦 Offer Changes | 0 |
 | 🎟️ Coupon Changes | 0 |
 | 🟢 Back in Stock | 0 |
@@ -18,14 +18,14 @@
 | --- | ---: | --- | :---: |
 | HUION-HS64 | ₹2,170 | In stock | ✅ |
 | WACOM-CTL-472 | — | — | ❌ |
-| XPPEN-DECO-640 | ₹2,989 | In stock | ✅ |
-| XPPEN-STAR-G640 | ₹2,189 | In stock | ✅ |
+| XPPEN-DECO-640 | ₹2,999 | In stock | ✅ |
+| XPPEN-STAR-G640 | ₹2,699 | In stock | ✅ |
 | HUION-INSPIROY=H640P | ₹2,445 | In stock | ✅ |
-| XPPEN-STAR-03V2 | ₹4,495 | In stock | ✅ |
+| XPPEN-STAR-03V2 | ₹4,499 | In stock | ✅ |
 | HUION-HS610 | ₹4,394 | In stock | ✅ |
-| HUION-HS611 | ₹5,099 | In stock | ✅ |
-| XPPEN-DECO01-V3 | ₹6,195 | In stock | ✅ |
-| XPPEN-DECO-MINI7-V2 | ₹3,510 | In stock | ✅ |
+| HUION-HS611 | ₹5,499 | In stock | ✅ |
+| XPPEN-DECO01-V3 | ₹6,499 | In stock | ✅ |
+| XPPEN-DECO-MINI7-V2 | ₹3,699 | In stock | ✅ |
 | HUION-INSPIROY-H950P | ₹3,395 | In stock | ✅ |
 | HUION-INSPIROY2-MEDIUM | ₹5,899 | In stock | ✅ |
-| HUION-INSPIROY-H1060P | ₹3,632 | In stock | ✅ |
+| HUION-INSPIROY-H1060P | ₹4,699 | In stock | ✅ |
