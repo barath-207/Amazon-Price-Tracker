@@ -5,7 +5,7 @@
 | Metric | Count |
 | --- | ---: |
 | 📉 Price Drops | 0 |
-| 📈 Price Increases | 0 |
+| 📈 Price Increases | 1 |
 | 🏦 Offer Changes | 0 |
 | 🎟️ Coupon Changes | 0 |
 | 🟢 Back in Stock | 0 |
@@ -24,7 +24,7 @@
 | XPPEN-STAR-03V2 | ₹4,495 | In stock | ✅ |
 | HUION-HS610 | ₹4,394 | In stock | ✅ |
 | HUION-HS611 | ₹5,099 | In stock | ✅ |
-| XPPEN-DECO01-V3 | ₹5,595 | In stock | ✅ |
+| XPPEN-DECO01-V3 | ₹6,195 | In stock | ✅ |
 | XPPEN-DECO-MINI7-V2 | ₹3,510 | In stock | ✅ |
 | HUION-INSPIROY-H950P | ₹3,395 | In stock | ✅ |
 | HUION-INSPIROY2-MEDIUM | ₹5,899 | In stock | ✅ |
