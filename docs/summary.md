@@ -4,7 +4,7 @@
 
 | Metric | Count |
 | --- | ---: |
-| 📉 Price Drops | 0 |
+| 📉 Price Drops | 1 |
 | 📈 Price Increases | 1 |
 | 🏦 Offer Changes | 0 |
 | 🎟️ Coupon Changes | 0 |
@@ -19,9 +19,9 @@
 | HUION-HS64 | ₹1,997 | In stock | ✅ |
 | WACOM-CTL-472 | — | — | ❌ |
 | XPPEN-DECO-640 | ₹2,699 | In stock | ✅ |
-| XPPEN-STAR-G640 | ₹2,279 | In stock | ✅ |
+| XPPEN-STAR-G640 | ₹2,399 | In stock | ✅ |
 | HUION-INSPIROY=H640P | ₹2,251 | In stock | ✅ |
-| XPPEN-STAR-03V2 | ₹4,098 | In stock | ✅ |
+| XPPEN-STAR-03V2 | ₹3,498 | In stock | ✅ |
 | HUION-HS610 | ₹4,045 | In stock | ✅ |
 | HUION-HS611 | ₹4,116 | In stock | ✅ |
 | XPPEN-DECO01-V3 | ₹5,999 | In stock | ✅ |
